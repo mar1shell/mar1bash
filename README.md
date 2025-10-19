@@ -97,7 +97,7 @@ mar1bash/
 2. Add the prototype to `include/main.h`
 3. Register it in the `builtinCommands` array in `executeBuiltin.c`
 
-## 🐛 Known Limitations
+## � Known Limitations
 
 - No pipe (`|`) or redirection (`>`, `<`) support
 - No background process support (`&`)

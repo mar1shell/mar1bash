@@ -23,7 +23,7 @@ int changeDirectory(char **args, int argc) {
         return EINVAL;
     }
 
-    char *path = args[1];
+    const char *path = args[1];
     
     if (isEmpty(path) || strcmp(path, "~") == 0) {
         char *HOME = getenv("HOME");

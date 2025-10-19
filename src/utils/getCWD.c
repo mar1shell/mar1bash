@@ -11,16 +11,16 @@
  */
 char *getCWD(char *buf, size_t size) {
     char *cwd = getcwd(buf, size);
+
+    if (!cwd) {
+        fprintf(stderr, RED"getcwd() error\n"RESET);
+        return NULL;
+    }
+
     char *HOME = getenv("HOME");
     int homeLength = strlen(HOME);
 
-    if (!cwd) {
-        fprintf(stderr, RED"getcwd() error"RESET);
-        return NULL;
-    }
-    
-    // TODO: modify paths that start from /home with ~/
-    if (strncmp(HOME, cwd, homeLength) == 0) {
+    if (HOME != NULL && strncmp(HOME, cwd, homeLength) == 0) {
         cwd[0] = '~';
 
         char *temp1 = cwd + 1;

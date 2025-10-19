@@ -124,15 +124,15 @@ pid_t xWait(int *STATUS) {
 /**
  * trim a string from leading and trailling whitspaces
  */
-int isEmpty(char *string) {
+int isEmpty(const char *string) {
     if (string == NULL || string[0] == '\0') {
         return TRUE;
     }
 
-    char *currChar = string;
+    const char *currChar = string;
 
     while (*currChar != '\0') {
-        if (*currChar != ' ') {
+        if (!isspace((unsigned char) *currChar)) {
             return FALSE;
         }
 

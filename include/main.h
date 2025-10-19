@@ -21,9 +21,9 @@ char *readShellLine();
 char *getCWD(char *buf, size_t size);
 char **lineTokenizer(char *line);
 void executeCommand(char **args);
-void interpretArgs(char **args, int argsCount);
+void interpretArgs(char **argv, int argc);
 int executeBuiltin(char **argv, int argc);
-void handleSIGINT(int sig);
+void handleSIGINT(const int sig);
 
 // builtins
 
@@ -37,11 +37,11 @@ void *xRealloc(void *ptr, size_t size);
 void xExecvp(const char *file, char *const argv[]);
 pid_t xFork();
 pid_t xWait(int *STATUS);
-int isEmpty(char *string);
+int isEmpty(const char *string);
 
 // globals
 
-extern int STATUS;
+extern volatile sig_atomic_t STATUS;
 
 // structs
 

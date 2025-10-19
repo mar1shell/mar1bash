@@ -2,7 +2,7 @@
 #include "../include/constants.h"
 #include "../include/colors.h"
 
-int STATUS = 0;
+volatile sig_atomic_t STATUS = 0;
 
 int main(int argc, char *argv[]) {
     char *line;
@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     
     char *HOME = getenv("HOME");
     
-    if (chdir(HOME) != 0) {
+    if (HOME == NULL || chdir(HOME) != 0) {
         fprintf(stderr ,RED"HOME directory not found, mar1bash will use the current directory\n"RESET);
     }
 
@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
             printf("\nGoodbye from " GREEN"mar1bash!\n"RESET);
             break;
         } else if (isEmpty(line)) {
+            free(line);
             printf("\n");
             continue;
         }

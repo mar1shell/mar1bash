@@ -9,7 +9,7 @@ char **lineTokenizer(char *line) {
     }
 
     const char *DELIMITER = " ";
-    size_t tokensSize = BUFSIZ; 
+    size_t tokensSize = 16; 
     char **tokens;
     char *token;
     int i = 0;
@@ -20,7 +20,7 @@ char **lineTokenizer(char *line) {
     do {
         tokens[i++] = token;
 
-        if (i >= tokensSize) {
+        if ((size_t)(i + 1) >= tokensSize) {
             tokensSize *= 2;
             tokens = xRealloc(tokens, tokensSize);
         }

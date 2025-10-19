@@ -11,7 +11,7 @@ char *readShellLine() {
 
     user = (user == NULL) ? "" : user;
 
-    sprintf(prompt, GREEN"┌["RESET BLUE"mar1bash"RESET"@"BLUE"%s"RESET GREEN"] "RESET YELLOW"%s\n"RESET
+    snprintf(prompt, BUFSIZ, GREEN"┌["RESET BLUE"mar1bash"RESET"@"BLUE"%s"RESET GREEN"] "RESET YELLOW"%s\n"RESET
                                   GREEN"└─> "RESET, user, getCWD(cwd, BUFSIZ));
 
     char *line = readline(prompt);
@@ -19,7 +19,9 @@ char *readShellLine() {
     if (errno == EINTR) {
         errno = 0;
 
-        line[0] = '\0';
+        if (line != NULL) {
+            line[0] = '\0';
+        }
 
         return line;
     }

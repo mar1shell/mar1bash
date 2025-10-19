@@ -2,7 +2,7 @@
 #include "../../include/colors.h"
 
 
-void handleSIGINT(int sig) {
+void handleSIGINT(const int sig) {
     printf("\n\nGoodbye from " GREEN"mar1bash!\n"RESET);
 
     exit(EXIT_SUCCESS);
