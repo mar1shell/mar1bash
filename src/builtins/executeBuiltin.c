@@ -3,6 +3,7 @@
 
 builtin builtinCommands[] = {
     {"exit", exitShell},
+    {"cd", changeDirectory},
     {NULL, NULL}
 };
 
@@ -25,7 +26,7 @@ int executeBuiltin(char **argv, int argc) {
     }
 
     if (command == NULL) {
-        return ENOENT;
+        return ENOTBUILTIN;
     }
 
     return curr->foo(argv, argc);

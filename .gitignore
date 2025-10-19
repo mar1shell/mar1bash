@@ -57,3 +57,4 @@ dkms.conf
 *.dwo
 
 todo.md
+.vscode/

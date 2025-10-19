@@ -1,19 +1,18 @@
 # --- Variables ---
 CC = gcc
 
-# 1. Compiler Flags
 # -MMD -MP: tells GCC to generate .d (dependency) files for each .c file.
 CFLAGS = -Wall -g -Iinclude -MMD -MP
 
-# 2. Linker Flags
+# Linker Flags
 LDFLAGS = -lreadline
 
-# 3. Directories
+# Directories
 SRCDIR = src
 OBJDIR = obj
 BINDIR = bin
 
-# 4. Final Executable Name
+# Final Executable Name
 TARGET = $(BINDIR)/mar1bash
 
 # --- Automatic File Discovery ---

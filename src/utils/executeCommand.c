@@ -7,8 +7,13 @@
  */
 void executeCommand(char **args) {
     if (xFork() == 0) {
+        signal(SIGINT, SIG_DFL);
         xExecvp(args[0], args);
     } else {
+        signal(SIGINT, SIG_IGN);
+
         wait(&STATUS);
+
+        signal(SIGINT, handleSIGINT);
     }
 }

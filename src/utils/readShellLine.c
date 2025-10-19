@@ -7,13 +7,24 @@
 char *readShellLine() {
     char cwd[BUFSIZ];
     char prompt[BUFSIZ];
+    char *user = getenv("USER");
 
-    sprintf(prompt, GREEN"┌["RESET BLUE"mar1bash"RESET GREEN"] "RESET YELLOW"%s\n"RESET
-                                  GREEN"└─> "RESET, getCWD(cwd, BUFSIZ));
+    user = (user == NULL) ? "" : user;
+
+    sprintf(prompt, GREEN"┌["RESET BLUE"mar1bash"RESET"@"BLUE"%s"RESET GREEN"] "RESET YELLOW"%s\n"RESET
+                                  GREEN"└─> "RESET, user, getCWD(cwd, BUFSIZ));
 
     char *line = readline(prompt);
 
-    if (line != NULL) {
+    if (errno == EINTR) {
+        errno = 0;
+
+        line[0] = '\0';
+
+        return line;
+    }
+
+    if (!isEmpty(line)) {
         add_history(line);
     }
 

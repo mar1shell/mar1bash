@@ -1,5 +1,6 @@
 #include "../../include/main.h"
 #include "../../include/colors.h"
+#include "../../include/constants.h"
 
 /**
  * interpret the given arguments and execute the corresponding command.
@@ -11,8 +12,9 @@ void interpretArgs(char **argv, int argc) {
         return;
     }
         
-    if (executeBuiltin(argv, argc) == ENOENT) {
+    if (executeBuiltin(argv, argc) == ENOTBUILTIN) {
         executeCommand(argv);
     }
 
+    printf("\n");
 }

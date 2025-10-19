@@ -4,7 +4,7 @@
  * @attention The tokens array must be freed after use to avoid memory leaks.
  */
 char **lineTokenizer(char *line) {
-    if (line == NULL || line[0] == '\0') {
+    if (isEmpty(line)) {
         return NULL;
     }
 

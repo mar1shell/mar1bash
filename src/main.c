@@ -7,9 +7,15 @@ int STATUS = 0;
 int main(int argc, char *argv[]) {
     char *line;
 
+    signal(SIGINT, handleSIGINT);
+    
     printWelcomeMessage();
-    printf("Type " GREEN"'help'"RESET " to see available commands.\n");
-    printf("Type " GREEN"'exit'"RESET " or press " GREEN"Ctrl+D"RESET " to quit.\n\n");
+    
+    char *HOME = getenv("HOME");
+    
+    if (chdir(HOME) != 0) {
+        fprintf(stderr ,RED"HOME directory not found, mar1bash will use the current directory\n"RESET);
+    }
 
     while (TRUE) {
         line = readShellLine();
@@ -17,7 +23,7 @@ int main(int argc, char *argv[]) {
         if (line == NULL) {
             printf("\nGoodbye from " GREEN"mar1bash!\n"RESET);
             break;
-        } else if (line[0] == '\0') {
+        } else if (isEmpty(line)) {
             printf("\n");
             continue;
         }

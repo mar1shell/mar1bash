@@ -1,5 +1,6 @@
 #include "../../include/colors.h"
 #include "../../include/main.h"
+#include "../../include/constants.h"
 
 /**
  * Print the welcome message.
@@ -13,6 +14,8 @@ void printWelcomeMessage() {
                 "██║ ╚═╝ ██║██║  ██║██║  ██║ ██║██████╔╝██║  ██║███████║██║  ██║\n"
                 "╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝\n"
                 "---------------------------------------------------------------\n"RESET);
+    printf("Type " GREEN"'help'"RESET " to see available commands.\n");
+    printf("Type " GREEN"'exit'"RESET " or press " GREEN"Ctrl+D"RESET " to quit.\n\n");
 }
 
 /**
@@ -115,4 +118,26 @@ pid_t xWait(int *STATUS) {
     }
 
     return result;
+}
+
+
+/**
+ * trim a string from leading and trailling whitspaces
+ */
+int isEmpty(char *string) {
+    if (string == NULL || string[0] == '\0') {
+        return TRUE;
+    }
+
+    char *currChar = string;
+
+    while (*currChar != '\0') {
+        if (*currChar != ' ') {
+            return FALSE;
+        }
+
+        currChar++;
+    }
+
+    return TRUE;
 }
