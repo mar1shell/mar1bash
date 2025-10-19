@@ -5,7 +5,6 @@
  * @param args the arguments array
  * @param argsCount the number of arguments
  */
-
 void executeCommand(char **args) {
     if (xFork() == 0) {
         xExecvp(args[0], args);

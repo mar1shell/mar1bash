@@ -20,6 +20,12 @@ char *readShellLine();
 char *getCWD(char *buf, size_t size);
 char **lineTokenizer(char *line);
 void executeCommand(char **args);
+void interpretArgs(char **args, int argsCount);
+int executeBuiltin(char **argv, int argc);
+
+// builtins
+
+int exitShell(char **argv, int argc);
 
 // functions
 
@@ -32,5 +38,12 @@ pid_t xWait(int *STATUS);
 // globals
 
 extern int STATUS;
+
+// structs
+
+typedef struct {
+    char *name;
+    int (* foo)(char **argv, int argc);
+} builtin;
 
 #endif /* MAIN_H */
